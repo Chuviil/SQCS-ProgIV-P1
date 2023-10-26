@@ -6,5 +6,5 @@ public class Profesor
 {
     [Key] public string? IdBanner { get; set; }
     [Required] public string? Contrasenia { get; set; }
-    [Required] public string? Nombre { get; set; }
+    public string? Nombre { get; set; }
 }

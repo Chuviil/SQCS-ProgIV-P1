@@ -17,7 +17,7 @@ public class ProfesorController : ControllerBase
         _db = db;
     }
 
-    [HttpPost]
+    [HttpPost("registro")]
     public async Task<IActionResult> Registro([FromBody] Profesor? profesor)
     {
         if (profesor == null) return BadRequest();
@@ -34,7 +34,7 @@ public class ProfesorController : ControllerBase
         return Ok(profesor);
     }
 
-    [HttpPost]
+    [HttpPost("inicio")]
     public async Task<IActionResult> Inicio([FromBody] Profesor? profesor)
     {
         if (profesor == null) return BadRequest();
