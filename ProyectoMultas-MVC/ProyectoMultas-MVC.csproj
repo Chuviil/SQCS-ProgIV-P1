@@ -7,4 +7,9 @@
         <RootNamespace>ProyectoMultas</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\Multa\" />
+      <Folder Include="wwwroot\img\" />
+    </ItemGroup>
+
 </Project>
