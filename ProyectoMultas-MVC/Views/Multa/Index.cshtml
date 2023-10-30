@@ -2,12 +2,25 @@
     <div class="container-sm d-flex flex-column">
         <h3 class="text-center text-white">Consulta de multas</h3>
 
-        @using (Html.BeginForm("Ayudante", "Multa", FormMethod.Get))
+        @if (ViewBag.Ayudantes.Count < 1)
         {
-            <label for="idBanner" class="form-label text-white">Id Banner</label>
-            <input type="text" name="idBanner" id="idBanner" class="form-control">
-            <div class="form-text text-white mb-2">Ingrese el Id Banner del ayudante que quiera revisar multas.</div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <h4 class="text-white">No hay ayudantes en el sistema</h4>
+        }
+        else
+        {
+            @using (Html.BeginForm("Ayudante", "Multa", FormMethod.Get))
+            {
+                <label for="idBanner" class="form-label text-white">Id Banner</label>
+            @* <input type="text" name="idBanner" id="idBanner" class="form-control"> *@
+                <select class="form-select" name="idBanner">
+                    @foreach (var ayudante in ViewBag.Ayudantes)
+                    {
+                        <option value="@ayudante.IdBanner">@ayudante.Nombre - @ayudante.IdBanner</option>
+                    }
+                </select>
+                <div class="form-text text-white mb-2">Ingrese el Id Banner del ayudante que quiera revisar multas.</div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
         }
     </div>
 </section>

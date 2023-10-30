@@ -13,8 +13,9 @@ public class MultaController : Controller
         _api = api;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
         return View();
     }
 
