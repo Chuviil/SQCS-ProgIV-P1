@@ -1,0 +1,20 @@
+﻿@model Ayudante
+
+<section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
+    <h2 class="text-white">Creación de Perfiles para Ayudantes</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label text-white">Id Banner</label>
+            <input class="form-control" asp-for="IdBanner">
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-white">Nombre</label>
+            <input class="form-control" asp-for="Nombre">
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-white">Carrera</label>
+            <input class="form-control" asp-for="Carrera">
+        </div>
+        <button type="submit" asp-action="Create" class="get-started-btn bg-transparent">Registrar</button>
+    </form>
+</section>

@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Ayudante/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXl1ZGFudGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Ayudante/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXl1ZGFudGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

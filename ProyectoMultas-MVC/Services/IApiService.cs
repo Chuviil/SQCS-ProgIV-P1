@@ -14,4 +14,6 @@ public interface IApiService
     
     Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor);
     Task EliminarProfesor(string idBanner);
+    
+    Task CrearAyudante(Ayudante? ayudante);
 }

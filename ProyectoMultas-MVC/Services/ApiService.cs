@@ -23,7 +23,7 @@ public class ApiService : IApiService
         {
             return await response.Content.ReadFromJsonAsync<Profesor>();
         }
-        
+
         return null;
     }
 
@@ -68,16 +68,21 @@ public class ApiService : IApiService
     public async Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor)
     {
         var response = await _client.PutAsJsonAsync($"api/Profesor/{idBanner}", profesor);
-        
+
         profesor = await response.Content.ReadFromJsonAsync<Profesor>();
-        
+
         if (profesor != null) return profesor;
-        
+
         return null;
     }
 
     public async Task EliminarProfesor(string idBanner)
     {
         await _client.DeleteAsync($"api/Profesor/{idBanner}");
+    }
+
+    public async Task CrearAyudante(Ayudante? ayudante)
+    {
+        await _client.PostAsJsonAsync("/api/Ayudante", ayudante);
     }
 }
