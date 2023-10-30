@@ -53,6 +53,15 @@ public class ApiService : IApiService
         return null;
     }
 
+    public async Task<Ayudante?> ObtenerAyudante(string idBanner)
+    {
+        var ayudante = await _client.GetFromJsonAsync<Ayudante>($"api/Ayudante/{idBanner}");
+        
+        if (ayudante != null) return ayudante;
+        
+        return null;
+    }
+
     public async Task<List<Multa>?> ObtenerMultasPorId(string idBanner)
     {
         var response = await _client.GetFromJsonAsync<List<Multa>>($"api/Multa/{idBanner}");
@@ -76,9 +85,19 @@ public class ApiService : IApiService
         return null;
     }
 
+    public async Task ActualizarAyudante(string idBanner, Ayudante? ayudante)
+    {
+        await _client.PutAsJsonAsync($"api/Ayudante/{idBanner}", ayudante);
+    }
+
     public async Task EliminarProfesor(string idBanner)
     {
         await _client.DeleteAsync($"api/Profesor/{idBanner}");
+    }
+
+    public async Task EliminarAyudante(string idBanner)
+    {
+        await _client.DeleteAsync($"api/Ayudante/{idBanner}");
     }
 
     public async Task CrearAyudante(Ayudante? ayudante)

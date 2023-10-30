@@ -23,6 +23,13 @@ public class AyudanteController : ControllerBase
         await _db.SaveChangesAsync();
         return Ok(ayudante);
     }
+    
+    [HttpGet("{idBanner}")]
+    public async Task<IActionResult> ObtenerAyudante(string idBanner)
+    {
+        var ayudante = await _db.Ayudantes.FirstOrDefaultAsync(a => a.IdBanner == idBanner);
+        return Ok(ayudante);
+    }
 
     [HttpGet]
     public async Task<IActionResult> ObtenerAyudantes()

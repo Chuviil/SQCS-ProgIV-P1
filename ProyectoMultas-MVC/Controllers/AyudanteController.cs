@@ -32,4 +32,26 @@ public class AyudanteController : Controller
 
         return RedirectToAction("Index");
     }
+
+    public async Task<IActionResult> Delete(string idBanner)
+    {
+        await _api.EliminarAyudante(idBanner);
+        
+        return RedirectToAction("Index");
+    }
+
+    public async Task<IActionResult> Edit(string idBanner)
+    {
+        var ayudante = await _api.ObtenerAyudante(idBanner);
+
+        return View(ayudante);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Ayudante ayudante)
+    {
+        await _api.ActualizarAyudante(ayudante.IdBanner, ayudante);
+
+        return RedirectToAction("Index");
+    }
 }
