@@ -35,7 +35,15 @@ public class MultaController : ControllerBase
     [HttpGet("{ayudanteId}")]
     public async Task<IActionResult> ObtenerMultasPorId(string ayudanteId)
     {
-        if (await _db.Ayudantes.FirstOrDefaultAsync(a => a.IdBanner == ayudanteId) is null) return NotFound();
+        /*
+         VALIDACION PERO DA ERROR
+         
+         var ayudante = await _db.Ayudantes.FirstOrDefaultAsync(x => x.IdBanner == ayudanteId);
+        
+        if (ayudante == null)
+        {
+            return NotFound();
+        }*/
         
         var multas = await _db.Multas.Where(m => m.AyudanteId == ayudanteId).ToListAsync();
 
