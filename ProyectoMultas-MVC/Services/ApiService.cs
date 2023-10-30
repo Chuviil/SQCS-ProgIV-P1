@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using ProyectoMultas.Models;
+﻿using ProyectoMultas.Models;
 
 namespace ProyectoMultas.Services;
 
@@ -103,5 +102,10 @@ public class ApiService : IApiService
     public async Task CrearAyudante(Ayudante? ayudante)
     {
         await _client.PostAsJsonAsync("/api/Ayudante", ayudante);
+    }
+
+    public async Task CrearMulta(Multa? multa)
+    {
+        await _client.PostAsJsonAsync("/api/Multa", multa);
     }
 }

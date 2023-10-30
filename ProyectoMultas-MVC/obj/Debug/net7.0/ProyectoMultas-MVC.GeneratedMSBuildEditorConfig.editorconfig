@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcQXl1ZGFudGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Multa/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Multa/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Multa/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

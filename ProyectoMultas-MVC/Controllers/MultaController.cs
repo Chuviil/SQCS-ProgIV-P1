@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMultas.Models;
 using ProyectoMultas.Services;
 
 namespace ProyectoMultas.Controllers;
@@ -33,5 +34,19 @@ public class MultaController : Controller
         {
             return RedirectToAction("Index");
         }
+    }
+
+    public async Task<IActionResult> Create()
+    {
+        ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
+        
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(Multa multa)
+    {
+        await _api.CrearMulta(multa);
+        return RedirectToAction("Ayudante", new {idBanner = multa.AyudanteId});
     }
 }
