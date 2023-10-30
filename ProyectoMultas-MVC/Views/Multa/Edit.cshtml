@@ -1,1 +1,29 @@
-﻿
+﻿@model Multa
+@{
+    var ayudantes = ViewBag.Ayudantes as List<Ayudante>;
+}
+
+<section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
+    <h2 class="text-white">Creación de Perfiles para Ayudantes</h2>
+    <form method="post">
+        <div class="mb-3">
+            <input asp-for="MultaId" hidden/>
+            <label class="form-label text-white">Id Banner (Ayudante)</label>
+            <select class="form-select" asp-for="AyudanteId">
+                @foreach (var ayudante in ayudantes)
+                {
+                    <option value="@ayudante.IdBanner">@ayudante.Nombre - @ayudante.IdBanner</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-white">Razon</label>
+            <input class="form-control" asp-for="Razon">
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-white">Monto</label>
+            <input class="form-control" asp-for="Monto">
+        </div>
+        <button type="submit" asp-action="Edit" class="get-started-btn bg-transparent">Modificar</button>
+    </form>
+</section>

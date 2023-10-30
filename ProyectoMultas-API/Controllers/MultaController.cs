@@ -81,4 +81,14 @@ public class MultaController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet("porId/{multaId}")]
+    public async Task<IActionResult> ObtenerMulta(int multaId)
+    {
+        var multaEncontrada = await _db.Multas.FirstOrDefaultAsync(m => m.MultaId == multaId);
+
+        if (multaEncontrada is null) return NotFound();
+
+        return Ok(multaEncontrada);
+    }
 }

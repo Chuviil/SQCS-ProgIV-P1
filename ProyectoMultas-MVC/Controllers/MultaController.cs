@@ -56,4 +56,21 @@ public class MultaController : Controller
 
         return RedirectToAction("Ayudante", new { idBanner });
     }
+
+    public async Task<IActionResult> Edit(int multaId)
+    {
+        ViewBag.Ayudantes = await _api.ObtenerAyudantes()?? new List<Ayudante>();
+
+        var multa = await _api.ObtenerMulta(multaId);
+
+        return View(multa);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Edit(Multa multa)
+    {
+        await _api.ActualizarMulta(multa.MultaId, multa);
+
+        return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
+    }
 }
