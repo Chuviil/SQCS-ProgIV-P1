@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col">Razon</th>
                 <th scope="col">Monto</th>
+                <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -21,6 +22,16 @@
                 <tr>
                     <td>@multa.Razon</td>
                     <td>@multa.Monto</td>
+                    <td>
+                        <a asp-route-multaId="@multa.MultaId"
+                           class="btn btn-secondary">
+                            <i class="ri-pencil-line me-2"></i>Editar
+                        </a>
+                        <a asp-action="Delete" asp-route-multaId="@multa.MultaId" asp-route-idBanner="@multa.AyudanteId"
+                           class="btn btn-danger">
+                            <i class="ri-delete-bin-line me-2"></i>Eliminar
+                        </a>
+                    </td>
                 </tr>
             }
             </tbody>

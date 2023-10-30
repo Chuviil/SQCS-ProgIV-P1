@@ -99,6 +99,11 @@ public class ApiService : IApiService
         await _client.DeleteAsync($"api/Ayudante/{idBanner}");
     }
 
+    public async Task EliminarMulta(int multaId)
+    {
+        await _client.DeleteAsync($"api/Multa/{multaId}");
+    }
+
     public async Task CrearAyudante(Ayudante? ayudante)
     {
         await _client.PostAsJsonAsync("/api/Ayudante", ayudante);

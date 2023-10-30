@@ -17,6 +17,7 @@ public interface IApiService
     Task ActualizarAyudante(string idBanner, Ayudante? ayudante);
     Task EliminarProfesor(string idBanner);
     Task EliminarAyudante(string idBanner);
+    Task EliminarMulta(int multaId);
     
     Task CrearAyudante(Ayudante? ayudante);
     Task CrearMulta(Multa? multa);
