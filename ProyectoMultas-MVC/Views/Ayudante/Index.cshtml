@@ -1,7 +1,32 @@
-﻿@{
+﻿@model List<Ayudante>
+
+@{
     ViewData["Title"] = "Lista de Ayudantes";
 }
 
-<div class="pt-5 bg-black">
-    <h1>Lista de Ayudantes</h1>
-</div>
+<section class="vh-100 p-5 bg-black flex-column d-flex justify-content-start align-items-center">
+    <h1 class="text-white">Lista de Ayudantes</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id Banner</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Carrera</th>
+          <th scope="col">Multas</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var ayudante in Model)
+        {
+          <tr>
+            <td>@ayudante.IdBanner</td>
+            <td>@ayudante.Nombre</td>
+            <td>@ayudante.Carrera</td>
+            <td>
+              <a asp-controller="Multa" asp-action="Ayudante" asp-route-idBanner="@ayudante.IdBanner" class="btn btn-primary"><i class="ri-bar-chart-box-line me-2"></i>Ver</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+</section>

@@ -28,12 +28,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Multa/Ayudante.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcQXl1ZGFudGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Multa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVsdGFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Profesor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzb3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Profesor/InicioSesion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzb3JcSW5pY2lvU2VzaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Profesor/Perfil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzb3JcUGVyZmlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/RiderProjects/ProyectoMultas/ProyectoMultas-MVC/Views/Profesor/Registro.cshtml]

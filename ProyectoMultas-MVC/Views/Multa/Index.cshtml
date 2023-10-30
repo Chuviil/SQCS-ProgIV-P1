@@ -1,0 +1,13 @@
+﻿<section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
+    <div class="container-sm d-flex flex-column">
+        <h3 class="text-center text-white">Consulta de multas</h3>
+
+        @using (Html.BeginForm("Ayudante", "Multa", FormMethod.Get))
+        {
+            <label for="idBanner" class="form-label text-white">Id Banner</label>
+            <input type="text" name="idBanner" id="idBanner" class="form-control">
+            <div class="form-text text-white mb-2">Ingrese el Id Banner del ayudante que quiera revisar multas.</div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+</section>

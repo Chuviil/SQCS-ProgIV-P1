@@ -5,6 +5,8 @@ namespace ProyectoMultas_API.Models;
 public class Multa
 {
     [Key] public int MultaId { get; set; }
-    [Required] public double Monto { get; set; }
-    [Required] public string? Razon { get; set; }
+    public double Monto { get; set; } = 0;
+    public string Razon { get; set; } = null!;
+    public string AyudanteId { get; set; } = null!;
+    public Ayudante Ayudante { get; set; } = null!;
 }

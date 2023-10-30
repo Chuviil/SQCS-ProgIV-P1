@@ -1,0 +1,33 @@
+﻿@model List<Multa>
+
+@{
+    ViewData["Title"] = "Multas";
+}
+
+<section class="vh-100 p-5 bg-black flex-column d-flex justify-content-start align-items-center">
+    <h1 class="text-white">Multas de @ViewBag.idBanner</h1>
+    @if (Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Razon</th>
+                <th scope="col">Monto</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var multa in Model)
+            {
+                <tr>
+                    <td>@multa.Razon</td>
+                    <td>@multa.Monto</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3 class="text-white">No hay multas para @ViewBag.idBanner</h3>
+    }
+</section>

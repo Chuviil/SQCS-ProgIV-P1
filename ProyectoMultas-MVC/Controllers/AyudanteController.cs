@@ -1,11 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMultas.Services;
 
 namespace ProyectoMultas.Controllers;
 
 public class AyudanteController : Controller
 {
-    public IActionResult Index()
+    private readonly IApiService _api;
+
+    public AyudanteController(IApiService api)
     {
-        return View();
+        _api = api;
+    }
+    
+    public async Task<IActionResult> Index()
+    {
+        var ayudantes = await _api.ObtenerAyudantes();
+        
+        return View(ayudantes);
     }
 }

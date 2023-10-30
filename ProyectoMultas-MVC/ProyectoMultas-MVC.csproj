@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Views\Multa\" />
       <Folder Include="wwwroot\img\" />
     </ItemGroup>
 

@@ -1,0 +1,16 @@
+﻿@model Profesor
+
+<section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
+  <form method="post">
+    <input asp-for="IdBanner" hidden/>
+    <div class="mb-3">
+      <label class="form-label text-white">Nombre</label>
+      <input class="form-control" asp-for="Nombre">
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-white">Contraseña</label>
+      <input class="form-control" asp-for="Contrasenia">
+    </div>
+    <button type="submit" asp-action="Perfil" class="btn btn-primary">Modificar</button>
+  </form>
+</section>

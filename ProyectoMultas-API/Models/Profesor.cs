@@ -4,7 +4,7 @@ namespace ProyectoMultas_API.Models;
 
 public class Profesor
 {
-    [Key] public string? IdBanner { get; set; }
-    [Required] public string? Contrasenia { get; set; }
-    public string? Nombre { get; set; }
+    [Key] public string IdBanner { get; set; } = String.Empty;
+    [Required] public string Contrasenia { get; set; } = String.Empty;
+    [Required] public string Nombre { get; set; } = String.Empty;
 }

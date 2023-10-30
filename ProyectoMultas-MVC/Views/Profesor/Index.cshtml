@@ -1,18 +1,76 @@
-﻿@* @model TModel *@
+﻿@model Profesor
 
-@{
-    Layout = null;
-}
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
 
-<!DOCTYPE html>
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-xl-6 col-lg-8">
+                <h1>Sistema Profesores<span>.</span></h1>
+                <h2>Bienvenid@@, @Model.Nombre</h2>
+            </div>
+        </div>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+        <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+            <div class="col-xl-2 col-md-4">
+                <div class="icon-box">
+                    <i class="ri-file-add-line"></i>
+                    <h3>
+                        <a href="">Registrar Multas</a>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-4">
+                <div class="icon-box">
+                    <i class="ri-user-add-line"></i>
+                    <h3>
+                        <a href="">Registrar Ayudante</a>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-4">
+                <div class="icon-box">
+                    <i class="ri-user-settings-line"></i>
+                    <h3>
+                        <form method="post">
+                            <input asp-for="Contrasenia" hidden/>
+                            <input asp-for="Nombre" hidden/>
+                            <input asp-for="IdBanner" hidden/>
+                            <button class="bg-transparent border-0 text-white" type="submit" asp-action="AbrirPerfil">Modificar Perfil</button>
+                        </form>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-4">
+                <div class="icon-box">
+                    <i class="ri-user-unfollow-line"></i>
+                    <h3>
+                        <button type="button" class="bg-transparent border-0 text-white" 
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Eliminar Cuenta
+                        </button>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminación</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Esta seguro que desea eliminar la cuenta?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a asp-action="EliminarPerfil" asp-route-idBanner="@Model.IdBanner" class="btn btn-danger">Si</a>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>

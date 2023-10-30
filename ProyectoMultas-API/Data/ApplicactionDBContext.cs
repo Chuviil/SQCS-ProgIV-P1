@@ -9,12 +9,16 @@ public class ApplicactionDBContext : DbContext
     {
     }
 
-    // public DbSet<Ayudante> Ayudantes { get; set; }
-    // public DbSet<Multa> Multas { get; set; }
-    
+    public DbSet<Ayudante> Ayudantes { get; set; }
+    public DbSet<Multa> Multas { get; set; }
     public DbSet<Profesor> Profesores { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Ayudante>()
+            .HasMany(e => e.Multas)
+            .WithOne(e => e.Ayudante)
+            .HasForeignKey(e => e.AyudanteId)
+            .IsRequired();
     }
 }
