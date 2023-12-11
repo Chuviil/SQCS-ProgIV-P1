@@ -14,13 +14,13 @@ public interface IApiService
     
     Task<List<Multa>?> ObtenerMultasPorId(string idBanner);
     
-    Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor);
-    Task ActualizarAyudante(string idBanner, Ayudante? ayudante);
-    Task ActualizarMulta(int multaId, Multa? multa);
-    Task EliminarProfesor(string idBanner);
-    Task EliminarAyudante(string idBanner);
-    Task EliminarMulta(int multaId);
+    Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor, string token);
+    Task ActualizarAyudante(string idBanner, Ayudante? ayudante, string token);
+    Task ActualizarMulta(int multaId, Multa? multa, string token);
+    Task EliminarProfesor(string idBanner, string token);
+    Task EliminarAyudante(string idBanner, string token);
+    Task EliminarMulta(int multaId, string token);
     
-    Task CrearAyudante(Ayudante? ayudante);
-    Task CrearMulta(Multa? multa);
+    Task CrearAyudante(Ayudante? ayudante, string token);
+    Task CrearMulta(Multa? multa, string token);
 }

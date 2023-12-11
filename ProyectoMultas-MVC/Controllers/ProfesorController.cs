@@ -15,8 +15,10 @@ public class ProfesorController : Controller
     }
 
     [HttpPost]
-    public IActionResult AbrirPerfil(Profesor profesor)
+    public IActionResult AbrirPerfil(Profesor profesor, string token)
     {
+        ViewBag.Token = token;
+        
         return View("Perfil",profesor);
     }
 
@@ -51,18 +53,20 @@ public class ProfesorController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Perfil(Profesor profesor)
+    public async Task<IActionResult> Perfil(Profesor profesor, string token)
     {
-        var profesorActualizado = await _api.ActualizarProfesor(profesor.IdBanner, profesor);
+        var profesorActualizado = await _api.ActualizarProfesor(profesor.IdBanner, profesor, token);
         
         if (profesorActualizado is null) RedirectToAction("Error","Home");
+
+        profesorActualizado.Token = token;
         
         return View("Index", profesorActualizado);
     }
 
-    public async Task<IActionResult> EliminarPerfil(string idBanner)
+    public async Task<IActionResult> EliminarPerfil(string idBanner, string token)
     {
-        await _api.EliminarProfesor(idBanner);
+        await _api.EliminarProfesor(idBanner, token);
         
         return RedirectToAction("InicioSesion");
     }

@@ -13,45 +13,56 @@ public class AyudanteController : Controller
         _api = api;
     }
     
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string token)
     {
         var ayudantes = await _api.ObtenerAyudantes();
+        ViewBag.Token = token;
         
         return View(ayudantes);
     }
 
-    public IActionResult Create()
+    public IActionResult Create(string token)
     {
+        ViewBag.Token = token;
+        
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Ayudante ayudante)
+    public async Task<IActionResult> Create(Ayudante ayudante, string token)
     {
-        await _api.CrearAyudante(ayudante);
+        await _api.CrearAyudante(ayudante, token);
 
         return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> Delete(string idBanner)
+    public async Task<IActionResult> Delete(string idBanner, string token)
     {
-        await _api.EliminarAyudante(idBanner);
+        await _api.EliminarAyudante(idBanner, token);
+        var ayudantes = await _api.ObtenerAyudantes();
         
-        return RedirectToAction("Index");
+        ViewBag.Token = token;
+        
+        return View("Index", ayudantes);
     }
 
-    public async Task<IActionResult> Edit(string idBanner)
+    public async Task<IActionResult> Edit(string idBanner, string token)
     {
         var ayudante = await _api.ObtenerAyudante(idBanner);
+        
+        ViewBag.Token = token;
 
         return View(ayudante);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Ayudante ayudante)
+    public async Task<IActionResult> Edit(Ayudante ayudante, string token)
     {
-        await _api.ActualizarAyudante(ayudante.IdBanner, ayudante);
+        await _api.ActualizarAyudante(ayudante.IdBanner, ayudante, token);
+        
+        var ayudantes = await _api.ObtenerAyudantes();
+        ViewBag.Token = token;
 
-        return RedirectToAction("Index");
+        return View("Index", ayudantes);
     }
 }

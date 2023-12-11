@@ -28,3 +28,4 @@ D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC\obj\Debug\net7.0\refint\Proye
 D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC\obj\Debug\net7.0\ProyectoMultas-MVC.pdb
 D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC\obj\Debug\net7.0\ProyectoMultas-MVC.genruntimeconfig.cache
 D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC\obj\Debug\net7.0\ref\ProyectoMultas-MVC.dll
+D:\RiderProjects\ProyectoMultas\ProyectoMultas-MVC\obj\Debug\net7.0\ProyectoMultas-MVC.sourcelink.json

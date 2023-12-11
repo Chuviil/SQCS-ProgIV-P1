@@ -19,7 +19,7 @@ public class MultaController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Ayudante(string idBanner)
+    public async Task<IActionResult> Ayudante(string idBanner, string token)
     {
         try
         {
@@ -28,6 +28,7 @@ public class MultaController : Controller
             if (multas is null) return RedirectToAction("Index");
 
             ViewBag.idBanner = idBanner;
+            ViewBag.Token = token;
 
             return View(multas);
         }
@@ -37,30 +38,31 @@ public class MultaController : Controller
         }
     }
 
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> Create(string token)
     {
         ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
-
+        ViewBag.Token = token;
+        
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Multa multa)
+    public async Task<IActionResult> Create(Multa multa, string token)
     {
-        await _api.CrearMulta(multa);
+        await _api.CrearMulta(multa, token);
         return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
     }
 
-    public async Task<IActionResult> Delete(int multaId, string idBanner)
+    public async Task<IActionResult> Delete(int multaId, string idBanner, string token)
     {
-        await _api.EliminarMulta(multaId);
+        await _api.EliminarMulta(multaId, token);
 
-        return RedirectToAction("Ayudante", new { idBanner });
+        return RedirectToAction("Ayudante", new { idBanner, token });
     }
 
-    public async Task<IActionResult> Edit(int multaId)
+    public async Task<IActionResult> Edit(int multaId, string token)
     {
-        ViewBag.Ayudantes = await _api.ObtenerAyudantes()?? new List<Ayudante>();
+        ViewBag.Token = token;
 
         var multa = await _api.ObtenerMulta(multaId);
 
@@ -68,10 +70,10 @@ public class MultaController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> Edit(Multa multa)
+    public async Task<IActionResult> Edit(Multa multa, string token)
     {
-        await _api.ActualizarMulta(multa.MultaId, multa);
+        await _api.ActualizarMulta(multa.MultaId, multa, token);
 
-        return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
+        return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId, token });
     }
 }

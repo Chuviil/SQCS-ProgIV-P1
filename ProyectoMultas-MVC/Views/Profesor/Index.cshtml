@@ -15,7 +15,7 @@
                 <div class="icon-box">
                     <i class="ri-file-add-line"></i>
                     <h3>
-                        <a asp-controller="Multa" asp-action="Create">Registrar Multas</a>
+                        <a asp-route-token=@Model.Token asp-controller="Multa" asp-action="Create">Registrar Multas</a>
                     </h3>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 <div class="icon-box">
                     <i class="ri-user-add-line"></i>
                     <h3>
-                        <a asp-controller="Ayudante" asp-action="Create">Registrar Ayudante</a>
+                        <a asp-route-token=@Model.Token asp-controller="Ayudante" asp-action="Create">Registrar Ayudante</a>
                     </h3>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                             <input asp-for="Contrasenia" hidden/>
                             <input asp-for="Nombre" hidden/>
                             <input asp-for="IdBanner" hidden/>
-                            <button class="bg-transparent border-0 text-white" type="submit" asp-action="AbrirPerfil">Modificar Perfil</button>
+                            <button class="bg-transparent border-0 text-white" type="submit" asp-route-token=@Model.Token asp-action="AbrirPerfil">Modificar Perfil</button>
                         </form>
                     </h3>
                 </div>
@@ -44,10 +44,18 @@
                 <div class="icon-box">
                     <i class="ri-user-unfollow-line"></i>
                     <h3>
-                        <button type="button" class="bg-transparent border-0 text-white" 
+                        <button type="button" class="bg-transparent border-0 text-white"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Eliminar Cuenta
                         </button>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-4">
+                <div class="icon-box">
+                    <i class="ri-bar-chart-box-line"></i>
+                    <h3>
+                        <a asp-route-token=@Model.Token asp-action="Index" asp-controller="Ayudante">Ayudantes</a>
                     </h3>
                 </div>
             </div>
@@ -69,7 +77,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a asp-action="EliminarPerfil" asp-route-idBanner="@Model.IdBanner" class="btn btn-danger">Si</a>
+                <a asp-route-token=@Model.Token asp-action="EliminarPerfil" asp-route-idBanner="@Model.IdBanner" class="btn btn-danger">Si</a>
             </div>
         </div>
     </div>

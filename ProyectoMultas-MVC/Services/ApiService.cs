@@ -16,7 +16,7 @@ public class ApiService : IApiService
 
     public async Task<Profesor?> IniciarSesion(ProfesorLoginDto? profesor)
     {
-        var response = await _client.PostAsJsonAsync("/api/Profesor/inicio", profesor);
+        var response = await _client.PostAsJsonAsync("/api/Profesor/login", profesor);
 
         if (response.IsSuccessStatusCode)
         {
@@ -55,24 +55,24 @@ public class ApiService : IApiService
     public async Task<Ayudante?> ObtenerAyudante(string idBanner)
     {
         var ayudante = await _client.GetFromJsonAsync<Ayudante>($"api/Ayudante/{idBanner}");
-        
+
         if (ayudante != null) return ayudante;
-        
+
         return null;
     }
 
     public async Task<Multa?> ObtenerMulta(int multaId)
     {
-        var multa = await _client.GetFromJsonAsync<Multa>($"api/Multa/porId/{multaId}");
-        
+        var multa = await _client.GetFromJsonAsync<Multa>($"api/Multa/{multaId}");
+
         if (multa != null) return multa;
-        
+
         return null;
     }
 
     public async Task<List<Multa>?> ObtenerMultasPorId(string idBanner)
     {
-        var response = await _client.GetFromJsonAsync<List<Multa>>($"api/Multa/{idBanner}");
+        var response = await _client.GetFromJsonAsync<List<Multa>>($"api/Ayudante/{idBanner}/multas");
 
         if (response != null)
         {
@@ -82,8 +82,10 @@ public class ApiService : IApiService
         return null;
     }
 
-    public async Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor)
+    public async Task<Profesor?> ActualizarProfesor(string idBanner, Profesor? profesor, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
+        
         var response = await _client.PutAsJsonAsync($"api/Profesor/{idBanner}", profesor);
 
         profesor = await response.Content.ReadFromJsonAsync<Profesor>();
@@ -93,38 +95,46 @@ public class ApiService : IApiService
         return null;
     }
 
-    public async Task ActualizarAyudante(string idBanner, Ayudante? ayudante)
+    public async Task ActualizarAyudante(string idBanner, Ayudante? ayudante, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
+        
         await _client.PutAsJsonAsync($"api/Ayudante/{idBanner}", ayudante);
     }
 
-    public async Task ActualizarMulta(int multaId, Multa? multa)
+    public async Task ActualizarMulta(int multaId, Multa? multa, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
         await _client.PutAsJsonAsync($"api/Multa/{multaId}", multa);
     }
 
-    public async Task EliminarProfesor(string idBanner)
+    public async Task EliminarProfesor(string idBanner, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
         await _client.DeleteAsync($"api/Profesor/{idBanner}");
     }
 
-    public async Task EliminarAyudante(string idBanner)
+    public async Task EliminarAyudante(string idBanner, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
         await _client.DeleteAsync($"api/Ayudante/{idBanner}");
     }
 
-    public async Task EliminarMulta(int multaId)
-    {
+    public async Task EliminarMulta(int multaId, string token)
+    {    
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
         await _client.DeleteAsync($"api/Multa/{multaId}");
     }
 
-    public async Task CrearAyudante(Ayudante? ayudante)
+    public async Task CrearAyudante(Ayudante? ayudante, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}" );
         await _client.PostAsJsonAsync("/api/Ayudante", ayudante);
     }
 
-    public async Task CrearMulta(Multa? multa)
+    public async Task CrearMulta(Multa? multa, string token)
     {
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
         await _client.PostAsJsonAsync("/api/Multa", multa);
     }
 }
