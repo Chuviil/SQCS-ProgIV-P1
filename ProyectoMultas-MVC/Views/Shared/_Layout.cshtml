@@ -41,13 +41,34 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->*@
 
-        <a asp-controller="Profesor" asp-action="InicioSesion" class="get-started-btn scrollto">Iniciar Sesion</a>
+        <a id="btn-ini" asp-controller="Profesor" asp-action="InicioSesion" class="get-started-btn scrollto">Iniciar Sesion</a>
+        <a id="btn-logout" asp-controller="Profesor" asp-action="CerrarSesion" class="d-none get-started-btn scrollto">Cerrar Sesion</a>
 
     </div>
 </header><!-- End Header -->
 <div>
     @RenderBody()
 </div>
+<script>
+    // Function to check if a cookie exists by name
+    function checkCookie(name) {
+        const cookieArray = document.cookie.split('; ');
+        return cookieArray.some(cookie => cookie.startsWith(name + '='));
+    }
+
+    // Example: Check if the "user" cookie exists
+    const userCookieExists = checkCookie('user');
+
+    // Example: Toggle a class on an HTML element based on the cookie existence
+    const buttonIniciar = document.getElementById('btn-ini');
+    const buttonLogout = document.getElementById('btn-logout');
+
+    if (userCookieExists) {
+        // Cookie exists, add a class
+        buttonIniciar.classList.add('d-none');
+        buttonLogout.classList.remove('d-none');
+    }
+</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="~/lib/purecounter/purecounter_vanilla.js"></script>

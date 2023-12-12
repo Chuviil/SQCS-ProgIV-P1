@@ -14,12 +14,28 @@ public class ProfesorController : Controller
         _api = api;
     }
 
-    [HttpPost]
-    public IActionResult AbrirPerfil(Profesor profesor, string token)
+    public IActionResult Index()
     {
-        ViewBag.Token = token;
-        
-        return View("Perfil",profesor);
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
+
+            return View(profesor);
+        }
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult Perfil()
+    {
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
+
+            return View(profesor);
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
     public IActionResult InicioSesion()
@@ -39,7 +55,12 @@ public class ProfesorController : Controller
 
         if (profesorRes is null) return View();
 
-        return View("Index", profesorRes);
+        Response.Cookies.Append("user", JsonSerializer.Serialize(profesorRes), new CookieOptions()
+        {
+            Expires = DateTimeOffset.Now.AddDays(30)
+        });
+
+        return RedirectToAction("Index");
     }
 
     [HttpPost]
@@ -48,26 +69,50 @@ public class ProfesorController : Controller
         var profesorRes = await _api.Registrar(profesor);
 
         if (profesorRes is null) return View();
-        
-        return View("Index", profesorRes);
+
+        Response.Cookies.Append("user", JsonSerializer.Serialize(profesorRes), new CookieOptions()
+        {
+            Expires = DateTimeOffset.Now.AddDays(30)
+        });
+
+        return RedirectToAction("Index");
     }
 
     [HttpPost]
-    public async Task<IActionResult> Perfil(Profesor profesor, string token)
+    public async Task<IActionResult> Perfil(Profesor? profesor)
     {
-        var profesorActualizado = await _api.ActualizarProfesor(profesor.IdBanner, profesor, token);
-        
-        if (profesorActualizado is null) RedirectToAction("Error","Home");
+        if (profesor is not null)
+        {
+            var profesorActualizado = await _api.ActualizarProfesor(profesor.IdBanner, profesor, profesor.Token);
 
-        profesorActualizado.Token = token;
-        
-        return View("Index", profesorActualizado);
+            if (profesorActualizado is null) return RedirectToAction("Error", "Home");
+
+            profesorActualizado.Token = profesor.Token;
+
+            Response.Cookies.Append("user", JsonSerializer.Serialize(profesorActualizado), new CookieOptions()
+            {
+                Expires = DateTimeOffset.Now.AddDays(30)
+            });
+        }
+
+        return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> EliminarPerfil(string idBanner, string token)
+    public async Task<IActionResult> EliminarPerfil(string idBanner)
     {
-        await _api.EliminarProfesor(idBanner, token);
-        
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
+
+            if (profesor != null) await _api.EliminarProfesor(idBanner, profesor.Token);
+        }
+
         return RedirectToAction("InicioSesion");
+    }
+
+    public IActionResult CerrarSesion()
+    {
+        Response.Cookies.Delete("user");
+        return RedirectToAction("Index", "Home");
     }
 }

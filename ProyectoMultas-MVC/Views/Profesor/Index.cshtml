@@ -15,7 +15,7 @@
                 <div class="icon-box">
                     <i class="ri-file-add-line"></i>
                     <h3>
-                        <a asp-route-token=@Model.Token asp-controller="Multa" asp-action="Create">Registrar Multas</a>
+                        <a asp-controller="Multa" asp-action="Create">Registrar Multas</a>
                     </h3>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 <div class="icon-box">
                     <i class="ri-user-add-line"></i>
                     <h3>
-                        <a asp-route-token=@Model.Token asp-controller="Ayudante" asp-action="Create">Registrar Ayudante</a>
+                        <a asp-controller="Ayudante" asp-action="Create">Registrar Ayudante</a>
                     </h3>
                 </div>
             </div>
@@ -31,12 +31,7 @@
                 <div class="icon-box">
                     <i class="ri-user-settings-line"></i>
                     <h3>
-                        <form method="post">
-                            <input asp-for="Contrasenia" hidden/>
-                            <input asp-for="Nombre" hidden/>
-                            <input asp-for="IdBanner" hidden/>
-                            <button class="bg-transparent border-0 text-white" type="submit" asp-route-token=@Model.Token asp-action="AbrirPerfil">Modificar Perfil</button>
-                        </form>
+                        <a asp-action="Perfil">Modificar Perfil</a>
                     </h3>
                 </div>
             </div>
@@ -77,7 +72,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a asp-route-token=@Model.Token asp-action="EliminarPerfil" asp-route-idBanner="@Model.IdBanner" class="btn btn-danger">Si</a>
+                <a asp-action="EliminarPerfil" asp-route-idBanner="@Model.IdBanner" class="btn btn-danger">Si</a>
             </div>
         </div>
     </div>

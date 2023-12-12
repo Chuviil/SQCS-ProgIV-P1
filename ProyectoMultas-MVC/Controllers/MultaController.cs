@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoMultas.Models;
 using ProyectoMultas.Services;
 
@@ -38,19 +39,26 @@ public class MultaController : Controller
         }
     }
 
-    public async Task<IActionResult> Create(string token)
+    public async Task<IActionResult> Create()
     {
         ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
-        ViewBag.Token = token;
-        
+
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Multa multa, string token)
+    public async Task<IActionResult> Create(Multa multa)
     {
-        await _api.CrearMulta(multa, token);
-        return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
+
+            if (profesor != null) await _api.CrearMulta(multa, profesor.Token);
+        
+            return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
     public async Task<IActionResult> Delete(int multaId, string idBanner, string token)
@@ -68,7 +76,7 @@ public class MultaController : Controller
 
         return View(multa);
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Edit(Multa multa, string token)
     {

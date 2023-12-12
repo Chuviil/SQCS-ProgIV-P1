@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoMultas.Models;
 
@@ -15,6 +16,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            return RedirectToAction("Index", "Profesor");
+        }
         return View();
     }
 

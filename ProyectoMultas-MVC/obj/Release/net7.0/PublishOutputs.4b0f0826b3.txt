@@ -1,0 +1,7 @@
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\ProyectoMultas-MVC.exe
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\appsettings.Development.json
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\appsettings.json
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\ProyectoMultas-MVC.dll
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\ProyectoMultas-MVC.deps.json
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\ProyectoMultas-MVC.runtimeconfig.json
+C:\Users\raulb\AppData\Local\Temp\rider-publish2663851998032695401\ProyectoMultas-MVC.pdb
