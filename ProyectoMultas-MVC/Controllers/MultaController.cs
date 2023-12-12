@@ -16,11 +16,16 @@ public class MultaController : Controller
 
     public async Task<IActionResult> Index()
     {
-        ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
-        return View();
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            ViewBag.Ayudantes = await _api.ObtenerAyudantes() ?? new List<Ayudante>();
+            return View();
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
-    public async Task<IActionResult> Ayudante(string idBanner, string token)
+    public async Task<IActionResult> Ayudante(string idBanner)
     {
         try
         {
@@ -29,7 +34,6 @@ public class MultaController : Controller
             if (multas is null) return RedirectToAction("Index");
 
             ViewBag.idBanner = idBanner;
-            ViewBag.Token = token;
 
             return View(multas);
         }
@@ -54,34 +58,46 @@ public class MultaController : Controller
             Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
 
             if (profesor != null) await _api.CrearMulta(multa, profesor.Token);
-        
+
             return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
         }
 
         return RedirectToAction("InicioSesion", "Profesor");
     }
 
-    public async Task<IActionResult> Delete(int multaId, string idBanner, string token)
+    public async Task<IActionResult> Delete(int multaId, string idBanner)
     {
-        await _api.EliminarMulta(multaId, token);
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
 
-        return RedirectToAction("Ayudante", new { idBanner, token });
+            if (profesor != null) await _api.EliminarMulta(multaId, profesor.Token);
+
+            return RedirectToAction("Ayudante", new { idBanner });
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
-    public async Task<IActionResult> Edit(int multaId, string token)
+    public async Task<IActionResult> Edit(int multaId)
     {
-        ViewBag.Token = token;
-
         var multa = await _api.ObtenerMulta(multaId);
 
         return View(multa);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Multa multa, string token)
+    public async Task<IActionResult> Edit(Multa multa)
     {
-        await _api.ActualizarMulta(multa.MultaId, multa, token);
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
 
-        return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId, token });
+            if (profesor != null) await _api.ActualizarMulta(multa.MultaId, multa, profesor.Token);
+
+            return RedirectToAction("Ayudante", new { idBanner = multa.AyudanteId });
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 }

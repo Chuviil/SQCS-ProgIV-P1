@@ -14,10 +14,9 @@ public class AyudanteController : Controller
         _api = api;
     }
 
-    public async Task<IActionResult> Index(string token)
+    public async Task<IActionResult> Index()
     {
         var ayudantes = await _api.ObtenerAyudantes();
-        ViewBag.Token = token;
 
         return View(ayudantes);
     }
@@ -42,33 +41,44 @@ public class AyudanteController : Controller
         return RedirectToAction("InicioSesion", "Profesor");
     }
 
-    public async Task<IActionResult> Delete(string idBanner, string token)
+    public async Task<IActionResult> Delete(string idBanner)
     {
-        await _api.EliminarAyudante(idBanner, token);
-        var ayudantes = await _api.ObtenerAyudantes();
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
 
-        ViewBag.Token = token;
+            if (profesor != null) await _api.EliminarAyudante(idBanner, profesor.Token);
 
-        return View("Index", ayudantes);
+            return RedirectToAction("Index");
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
-    public async Task<IActionResult> Edit(string idBanner, string token)
+    public async Task<IActionResult> Edit(string idBanner)
     {
-        var ayudante = await _api.ObtenerAyudante(idBanner);
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            var ayudante = await _api.ObtenerAyudante(idBanner);
 
-        ViewBag.Token = token;
+            return View(ayudante);
+        }
 
-        return View(ayudante);
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Ayudante ayudante, string token)
+    public async Task<IActionResult> Edit(Ayudante ayudante)
     {
-        await _api.ActualizarAyudante(ayudante.IdBanner, ayudante, token);
+        if (Request.Cookies.TryGetValue("user", out string? user))
+        {
+            Profesor? profesor = JsonSerializer.Deserialize<Profesor>(user);
 
-        var ayudantes = await _api.ObtenerAyudantes();
-        ViewBag.Token = token;
+            if (profesor != null) await _api.ActualizarAyudante(ayudante.IdBanner, ayudante, profesor.Token);
 
-        return View("Index", ayudantes);
+            return RedirectToAction("Index");
+        }
+
+        return RedirectToAction("InicioSesion", "Profesor");
     }
 }

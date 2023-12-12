@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Lista de Ayudantes";
-    var token = ViewBag.Token as string;
 }
 
 <section class="vh-100 p-5 bg-black flex-column d-flex justify-content-start align-items-center">
@@ -25,17 +24,17 @@
                 <td>@ayudante.Nombre</td>
                 <td>@ayudante.Carrera</td>
                 <td>
-                    <a asp-controller="Multa" asp-route-token=@token asp-action="Ayudante" asp-route-idBanner="@ayudante.IdBanner"
+                    <a asp-controller="Multa" asp-action="Ayudante" asp-route-idBanner="@ayudante.IdBanner"
                        class="btn btn-primary">
                         <i class="ri-eye-line me-2"></i>Ver
                     </a>
                 </td>
                 <td>
-                    <a asp-route-token=@token asp-action="Edit" asp-route-idBanner="@ayudante.IdBanner"
+                    <a asp-action="Edit" asp-route-idBanner="@ayudante.IdBanner"
                        class="btn btn-secondary">
                         <i class="ri-pencil-line me-2"></i>Editar
                     </a>
-                    <a asp-route-token=@token asp-action="Delete" asp-route-idBanner="@ayudante.IdBanner"
+                    <a asp-action="Delete" asp-route-idBanner="@ayudante.IdBanner"
                        class="btn btn-danger">
                         <i class="ri-delete-bin-line me-2"></i>Eliminar
                     </a>

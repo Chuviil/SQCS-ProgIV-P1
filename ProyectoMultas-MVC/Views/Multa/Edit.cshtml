@@ -1,7 +1,4 @@
 ﻿@model Multa
-@{
-    var token = ViewBag.Token as string;
-}
 
 <section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
     <h2 class="text-white">Creación de Perfiles para Ayudantes</h2>
@@ -19,6 +16,6 @@
             <label class="form-label text-white">Monto</label>
             <input class="form-control" asp-for="Monto">
         </div>
-        <button asp-route-token=@token type="submit" asp-action="Edit" class="get-started-btn bg-transparent">Modificar</button>
+        <button type="submit" asp-action="Edit" class="get-started-btn bg-transparent">Modificar</button>
     </form>
 </section>

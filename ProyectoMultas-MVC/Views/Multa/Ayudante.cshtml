@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Multas";
-    var token = ViewBag.Token as string;
 }
 
 <section class="vh-100 p-5 bg-black flex-column d-flex justify-content-start align-items-center">
@@ -24,11 +23,11 @@
                     <td>@multa.Razon</td>
                     <td>@multa.Monto</td>
                     <td>
-                        <a asp-route-token=@token asp-route-multaId="@multa.MultaId" asp-action="Edit"
+                        <a asp-route-multaId="@multa.MultaId" asp-action="Edit"
                            class="btn btn-secondary">
                             <i class="ri-pencil-line me-2"></i>Editar
                         </a>
-                        <a asp-route-token=@token asp-action="Delete" asp-route-multaId="@multa.MultaId" asp-route-idBanner="@multa.AyudanteId"
+                        <a asp-action="Delete" asp-route-multaId="@multa.MultaId" asp-route-idBanner="@multa.AyudanteId"
                            class="btn btn-danger">
                             <i class="ri-delete-bin-line me-2"></i>Eliminar
                         </a>

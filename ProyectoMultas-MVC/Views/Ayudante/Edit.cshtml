@@ -1,9 +1,5 @@
 ﻿@model Ayudante
 
-@{
-    var token = ViewBag.Token as string;
-}
-
 <section class="vh-100 d-flex flex-column justify-content-center align-items-center bg-black">
     <h2 class="text-white">Edición de Perfiles para Ayudantes</h2>
     <form method="post">
@@ -23,7 +19,7 @@
             <label class="form-label text-white">Contraseña</label>
             <input class="form-control" asp-for="Contrasenia">
         </div>
-        <button type="submit" asp-route-token=@token asp-action="Edit" class="get-started-btn bg-transparent">
+        <button type="submit" asp-action="Edit" class="get-started-btn bg-transparent">
             Editar
         </button>
     </form>

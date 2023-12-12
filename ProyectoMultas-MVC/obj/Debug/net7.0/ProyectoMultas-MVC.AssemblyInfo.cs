@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProyectoMultas-MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34984617004223a5c1a23d5ca15603f64f8de5fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d618b77481d19ef0284950f5cfb53ba4b21a13ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProyectoMultas-MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProyectoMultas-MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
